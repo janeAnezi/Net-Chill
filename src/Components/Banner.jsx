@@ -36,22 +36,22 @@ function Banner() {
     }
 
     return (
-        <header className='banner h-[600px]' style={{
+        <header className='h-[700px]' style={{
             backgroundSize: "cover", 
             backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
             backgroundPosition: "center center"
-        }} >
+            }} >
             <div className="text-4xl  text-red-700 pt-10 pl-10">NET~CHILL</div>
         
-            <div className="ml-20 pt-36">
-                <h1 className='text-5xl py-3 font-bold w-96'>
+            <div className="ml-8 pt-36 lg:ml-20">
+                <h1 className='text-5xl py-3 font-bold w-80'>
                     {movie.title || movie.name || movie.original_name}
                 </h1>
                 <div className='py-3 space-x-4'>
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>Play</button>
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>My List</button>
                 </div>
-                <h2 className='w-96'>
+                <h2 className='w-80 pt-2 '>
                     {movie.overview}
                 </h2>
             </div>
