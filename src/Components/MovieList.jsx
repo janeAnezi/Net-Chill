@@ -18,17 +18,7 @@ const MovieList = (props) => {
                         </div>
                     ))}
                 </div>
-                <style jsx>{`
-                    .flex-no-wrap {
-                    overflow-x: auto;
-                    scrollbar-width: none;
-                    -ms-overflow-style: none;
-                    }
-                    .flex-no-wrap::-webkit-scrollbar {
-                    display: none; 
-                    }
-                    `}
-                </style>
+               
             </div>
 
             
