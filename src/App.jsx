@@ -4,6 +4,8 @@ import './index.css';
 import SearchBox from './Components/SearchBox';
 import AddToFavourites from './Components/AddFav';
 import MovieList from './Components/MovieList';
+import Rows from './Components/Rows';
+import requests from './request';
 
 function App() {
   const [searchValue, setSearchValue] = useState('')
@@ -53,7 +55,10 @@ function App() {
           <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
         </div>
         <MovieList  movies={movies} handleFavouritesClick={addFavouriteMovie} favouriteComponent={AddToFavourites}/>
-        
+        <Rows title="NETCHILL ORIGINALS" fetchURL={requests.fetchOriginals} />
+        <Rows title="Trending Now" fetchURL={requests.fetchTrending}/>
+        <Rows title="Action" fetchURL={requests.fetchActionMovies} />
+        <Rows title="Romance" fetchURL={requests.fetchRomanceMovies} />
       </div>
     </>
   )
