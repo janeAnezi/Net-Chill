@@ -49,16 +49,19 @@ function App() {
 
   return (
     <>
-      <div className='text-white w-full'>
+      <div className='bg-blue-950 text-white'>
         <Banner />
         <div className='absolute -top-1 right-5'>
           <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
         </div>
         <MovieList  movies={movies} handleFavouritesClick={addFavouriteMovie} favouriteComponent={AddToFavourites}/>
-        <Rows title="NETCHILL ORIGINALS" fetchURL={requests.fetchOriginals} />
+        <Rows title="NET~CHILL ORIGINALS" fetchURL={requests.fetchOriginals} />
         <Rows title="Trending Now" fetchURL={requests.fetchTrending}/>
         <Rows title="Action" fetchURL={requests.fetchActionMovies} />
         <Rows title="Romance" fetchURL={requests.fetchRomanceMovies} />
+        <Rows title="Comedy" fetchURL={requests.fetchComedyMovies} />
+        <Rows title="Horror" fetchURL={requests.fetchHorrorMovies} />
+
       </div>
     </>
   )
