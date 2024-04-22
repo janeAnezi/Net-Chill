@@ -55,6 +55,7 @@ function Banner() {
                     {movie.overview}
                 </h2>
             </div>
+            <div className='baner-gradient'></div>
         </header>
     );
 }

@@ -49,7 +49,7 @@ function App() {
 
   return (
     <>
-      <div className='bg-blue-950 bg-blend-darken text-white'>
+      <div className='bg-slate-950 bg-blend-darken text-white'>
         <Banner />
         <div className='absolute -top-1 right-5'>
           <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
@@ -61,7 +61,7 @@ function App() {
         <Rows title="Romance" fetchURL={requests.fetchRomanceMovies} />
         <Rows title="Comedy" fetchURL={requests.fetchComedyMovies} />
         <Rows title="Horror" fetchURL={requests.fetchHorrorMovies} />
-
+        <Rows title="Documentries" fetchURL={requests.fetchDocumentries} />
       </div>
     </>
   )
