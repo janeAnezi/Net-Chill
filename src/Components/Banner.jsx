@@ -51,7 +51,7 @@ function Banner() {
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>Play</button>
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>My List</button>
                 </div>
-                <h2 className='w-80 pt-2 '>
+                <h2 className='w-80 pt-2 leading-loose'>
                     {movie.overview}
                 </h2>
             </div>
