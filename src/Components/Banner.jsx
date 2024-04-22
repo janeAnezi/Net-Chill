@@ -2,47 +2,63 @@ import React, { useEffect, useState } from 'react';
 import axios from '../axios';
 import requests from '../request';
 
-
 function Banner() {
-    const [movie, setMovies] = useState([]);
+    const [movie, setMovie] = useState(null);
+    const [error, setError] = useState(null);
 
-    useEffect( () => {
-        async function fetchData() {
-            const request = await axios.get(requests.fetchActionMovies);
-            setMovies(
-                request.data.results[
-                    Math.floor(Math.random() * request.data.results.length)
-                ]
-            )
-        }
-        fetchData()
-    } , [] );
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(requests.fetchActionMovies, {
+                    timeout: 5000 // Adjust the timeout value as needed
+                });
+                const randomIndex = Math.floor(Math.random() * response.data.results.length);
+                setMovie(response.data.results[randomIndex]);
+            } catch (error) {
+                setError(error);
+            }
+        };
+        
+        fetchData();
 
-    console.log(movie);
+        // Cleanup function
+        return () => {
+            // Cleanup code here if needed
+        };
+    }, []);
 
-  return (
-    <header className='banner h-[600px]' style={{
-        backgroundSize: "cover", 
-        backgroundImage: `url('https://image.tmdb.org/t/p/original${movie?.backdrop_path}')`,
-        backgroundPosition: "center center"
+    if (error) {
+        // Handle error, e.g., show a message to the user
+        return <div>Error: {error.message}</div>;
+    }
+
+    if (!movie) {
+        // Optionally, you can show a loading indicator while waiting for the data
+        return <div>Loading...</div>;
+    }
+
+    return (
+        <header className='banner h-[600px]' style={{
+            backgroundSize: "cover", 
+            backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
+            backgroundPosition: "center center"
         }} >
-        <div className="text-4xl  text-red-700 pt-10 pl-10">NET~CHILL</div>
-    
-        <div className="ml-20 pt-36">
-            <h1 className='text-5xl py-3 font-bold'>
-                {movie?.title || movie?.name || movie?.original_name}
-            </h1>
-            <div className='py-3 space-x-4'>
-                <button className='bg-red-500 px-3 py-1 rounded-lg'>Play</button>
-                <button className='bg-red-500 px-3 py-1 rounded-lg'>My List</button>
+            <div className="text-4xl  text-red-700 pt-10 pl-10">NET~CHILL</div>
+        
+            <div className="ml-20 pt-36">
+                <h1 className='text-5xl py-3 font-bold'>
+                    {movie.title || movie.name || movie.original_name}
+                </h1>
+                <div className='py-3 space-x-4'>
+                    <button className='bg-red-500 px-3 py-1 rounded-lg'>Play</button>
+                    <button className='bg-red-500 px-3 py-1 rounded-lg'>My List</button>
+                </div>
+                <h2 className='w-96'>
+                    {movie.overview}
+                </h2>
             </div>
-            <h2 className='w-96'>
-                {movie?.overview}
-            </h2>
-        </div>
-      
-    </header>
-  )
+        </header>
+    );
 }
 
-export default Banner
+export default Banner;
