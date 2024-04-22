@@ -9,9 +9,7 @@ function Banner() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(requests.fetchActionMovies, {
-                    timeout: 5000 // Adjust the timeout value as needed
-                });
+                const response = await axios.get(requests.fetchActionMovies);
                 const randomIndex = Math.floor(Math.random() * response.data.results.length);
                 setMovie(response.data.results[randomIndex]);
             } catch (error) {
@@ -46,7 +44,7 @@ function Banner() {
             <div className="text-4xl  text-red-700 pt-10 pl-10">NET~CHILL</div>
         
             <div className="ml-20 pt-36">
-                <h1 className='text-5xl py-3 font-bold'>
+                <h1 className='text-5xl py-3 font-bold w-96'>
                     {movie.title || movie.name || movie.original_name}
                 </h1>
                 <div className='py-3 space-x-4'>
