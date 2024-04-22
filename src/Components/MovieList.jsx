@@ -5,7 +5,7 @@ const MovieList = (props) => {
 
   if (!movies || movies.length === 0) {
     // If movies array is empty or undefined, render a message or null
-    return <p>No movies to display</p>;
+    return <p className="text-red-600">Movies</p>;
   }
 
   return (
