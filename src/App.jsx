@@ -49,7 +49,7 @@ function App() {
 
   return (
     <>
-      <div className='bg-blue-950 text-white'>
+      <div className='bg-blue-950 bg-blend-darken text-white'>
         <Banner />
         <div className='absolute -top-1 right-5'>
           <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />

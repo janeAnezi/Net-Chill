@@ -36,7 +36,7 @@ function Banner() {
     }
 
     return (
-        <header className='h-[700px]' style={{
+        <header className='h-[750px]' style={{
             backgroundSize: "cover", 
             backgroundImage: `url('https://image.tmdb.org/t/p/original${movie.backdrop_path}')`,
             backgroundPosition: "center center"
@@ -51,7 +51,7 @@ function Banner() {
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>Play</button>
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>My List</button>
                 </div>
-                <h2 className='w-80 pt-2 leading-loose'>
+                <h2 className='w-80 pt-2 leading-relaxed'>
                     {movie.overview}
                 </h2>
             </div>
