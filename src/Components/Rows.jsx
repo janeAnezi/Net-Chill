@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react';
-// import { useNavigate } from 'react-router-dom';
 import axios from '../axios'; 
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import MovieDetails from './MovieDetails'; 
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 
 export default function Rows({ title, fetchURL }) {
-
-  // const navigate = useNavigate();
 
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState('');
@@ -28,9 +26,6 @@ export default function Rows({ title, fetchURL }) {
   }, [fetchURL]);
 
   const handleClick = (movie) => {
-
-    // navigate('/moviedetails');
-
     if (trailerUrl) {
       setTrailerUrl('');
     } else {
@@ -59,7 +54,9 @@ export default function Rows({ title, fetchURL }) {
       <div className="flex flex-no-wrap">
         {movies.map((movie, index) => (
           <div key={index} className="flex-shrink-0 px-2 relative transition-transform hover:cursor-pointer hover:scale-110">
-            <img onClick={() => handleClick(movie)} src={`${base_url}${movie.poster_path}`} alt={movie.name} className="w-40" />
+            <Link to={`/movie/${movie.id}`}> {/* Wrap the image with Link */}
+              <img onClick={() => handleClick(movie)} src={`${base_url}${movie.poster_path}`} alt={movie.name} className="w-40" />
+            </Link>
             <p className="text-center">{movie.name}</p>
           </div>
         ))}
