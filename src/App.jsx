@@ -7,7 +7,7 @@ import AddToFavourites from './Components/AddFav';
 import RemoveFavourites from './Components/RemovFav';
 import MovieList from './Components/MovieList';
 import Rows from './Components/Rows';
-import requests from './request';
+import requests, {API_KEY} from './request';
 import Nav from './Components/Nav';
 // import MovieDetails from './Components/MovieDetails';
 
@@ -23,7 +23,7 @@ function App() {
   const getMovieRequest = async (searchValue) => {
     try {
       // const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=9591cb8`;
-      const url = `https://api.themoviedb.org/3/search/movie?query=${searchValue}&api_key=89453aec0dad86e73c019c6bbe43cb21`;
+      const url = `https://api.themoviedb.org/3/search/movie?query=${searchValue}&api_key=${API_KEY}`;
 
       const response = await fetch(url);
       const responseJson = await response.json();

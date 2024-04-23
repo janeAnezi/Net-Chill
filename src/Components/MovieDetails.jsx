@@ -8,8 +8,8 @@ const MovieDetails = ({ movie, onClose }) => {
   useEffect(() => {
     const fetchMovieDetails = async () => {
       try {
-        if (movie && movie.imdb_id) {
-          const response = await axios.get(`${BASE_URL}/movie/${movie.imdb_id}?api_key=${API_KEY}`);
+        if (movie && movie.id) {
+          const response = await axios.get(`${BASE_URL}/movie/${movie.id}?api_key=${API_KEY}`);
           setMovieDetails(response.data);
         } else {
           console.error('Movie IMDb ID not found');
