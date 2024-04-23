@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+// import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Banner from './Components/Banner';
 import './index.css';
 import SearchBox from './Components/SearchBox';
@@ -8,6 +9,7 @@ import MovieList from './Components/MovieList';
 import Rows from './Components/Rows';
 import requests from './request';
 import Nav from './Components/Nav';
+// import MovieDetails from './Components/MovieDetails';
 
 
 
@@ -20,12 +22,15 @@ function App() {
 
   const getMovieRequest = async (searchValue) => {
     try {
-      const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=9591cb8`;
+      // const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=9591cb8`;
+      const url = `https://api.themoviedb.org/3/search/movie?query=${searchValue}&api_key=89453aec0dad86e73c019c6bbe43cb21`;
+
       const response = await fetch(url);
       const responseJson = await response.json();
+      console.log(responseJson.results)
   
-      if (responseJson.Search) {
-        setMovies(responseJson.Search);
+      if (responseJson.results) {
+        setMovies(responseJson.results);
       } else {
         setMovies([]);
       }
@@ -76,7 +81,15 @@ function App() {
         <Rows title="Romance" fetchURL={requests.fetchRomanceMovies} />
         <Rows title="Comedy" fetchURL={requests.fetchComedyMovies} />
         <Rows title="Horror" fetchURL={requests.fetchHorrorMovies} />
-        <Rows title="Documentries" fetchURL={requests.fetchDocumentries} />
+        <Rows title="Documentaries" fetchURL={requests.fetchDocumentries} />
+        
+        {/* <Router>
+          <Routes>
+            <Route path="/moviedetails" element={<MovieDetails />} />
+          </Routes>
+        </Router> */}
+
+
       </div>
     </>
   )

@@ -9,7 +9,7 @@ function Banner() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(requests.fetchActionMovies);
+                const response = await axios.get(requests.fetchOriginals);
                 const randomIndex = Math.floor(Math.random() * response.data.results.length);
                 setMovie(response.data.results[randomIndex]);
             } catch (error) {
@@ -48,7 +48,8 @@ function Banner() {
                 </h1>
                 <div className='py-3 space-x-4'>
                     <button className='bg-red-500 px-3 py-1 rounded-lg'>Play</button>
-                    <button className='bg-red-500 px-3 py-1 rounded-lg'>My List</button>
+                    <button className='bg-red-500 px-3 py-1 rounded-lg'><a href={`https://image.tmdb.org/t/p/original${movie.original_title}`} target="_blank" rel="noopener noreferrer">View</a>
+</button>
                 </div>
                 <h2 className='w-80 pt-2 leading-relaxed'>
                     {movie.overview}

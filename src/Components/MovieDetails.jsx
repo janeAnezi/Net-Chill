@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../axios';
+import {API_KEY, BASE_URL} from '../request';
 
-const MovieDetails = ({ movieId, onClose }) => {
+const MovieDetails = ({ movie, onClose }) => {
   const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
-    async function fetchMovieDetails() {
+    const fetchMovieDetails = async () => {
       try {
-        const response = await axios.get(`/movie/${movieId}`);
-        setMovieDetails(response.data);
+        if (movie && movie.imdb_id) {
+          const response = await axios.get(`${BASE_URL}/movie/${movie.imdb_id}?api_key=${API_KEY}`);
+          setMovieDetails(response.data);
+        } else {
+          console.error('Movie IMDb ID not found');
+        }
       } catch (error) {
         console.error('Error fetching movie details:', error);
       }
-    }
+    };
 
     fetchMovieDetails();
-  }, [movieId]);
+  }, [movie]);
 
   if (!movieDetails) {
     return <div>Loading...</div>;
