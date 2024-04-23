@@ -5,7 +5,7 @@ const MovieList = ({ FavouriteComponent, movies, handleFavouritesClick, title })
   // Check if movies exist and is an array
   if (!movies || !Array.isArray(movies) || movies.length === 0) {
     // If movies array is empty or undefined, render a message or null
-    return <p className="text-red-600">No movies to display</p>;
+    return <p className="text-red-600">search movies to display</p>;
   } else {
     // If movies array is not empty, render the list of movies
     return (
