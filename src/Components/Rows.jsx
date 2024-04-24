@@ -2,16 +2,17 @@ import React, { useEffect, useState } from 'react';
 import axios from '../axios'; 
 import YouTube from 'react-youtube';
 import movieTrailer from 'movie-trailer';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import MovieDetails from './MovieDetails'; 
 
 const base_url = 'https://image.tmdb.org/t/p/original/';
 
 export default function Rows({ title, fetchURL }) {
 
+  const history = useNavigate();
   const [movies, setMovies] = useState([]);
   const [trailerUrl, setTrailerUrl] = useState('');
-  const [selectedMovieId, setSelectedMovieId] = useState(null); 
 
   useEffect(() => {
     async function fetchData() {
@@ -26,13 +27,16 @@ export default function Rows({ title, fetchURL }) {
   }, [fetchURL]);
 
   const handleClick = (movie) => {
+    // No need to set selectedMovieId
+    history.push(`/movie/${movie.id}`);
+  
     if (trailerUrl) {
       setTrailerUrl('');
     } else {
       movieTrailer(movie?.name || '')
         .then((url) => {
           try {
-            const urlParams = new URLSearchParams(new URL(url).search); 
+            const urlParams = new URLSearchParams(new URL(url).search);
             setTrailerUrl(urlParams.get('v'));
           } catch (error) {
             console.error('Error constructing URL:', error);
@@ -41,11 +45,11 @@ export default function Rows({ title, fetchURL }) {
         })
         .catch((error) => console.log(error));
     }
-    setSelectedMovieId(movie.id); // Set selected movie ID when a user clicks on a movie
   };
+  
 
   const handleCloseDetails = () => {
-    setSelectedMovieId(null); // Reset selected movie ID when closing movie details
+    // No need to set selectedMovieId
   };
 
   return (
@@ -54,7 +58,7 @@ export default function Rows({ title, fetchURL }) {
       <div className="flex flex-no-wrap">
         {movies.map((movie, index) => (
           <div key={index} className="flex-shrink-0 px-2 relative transition-transform hover:cursor-pointer hover:scale-110">
-            <Link to={`/movie/${movie.id}`}> {/* Wrap the image with Link */}
+            <Link to={`/movie/${movie.id}`}>
               <img onClick={() => handleClick(movie)} src={`${base_url}${movie.poster_path}`} alt={movie.name} className="w-40" />
             </Link>
             <p className="text-center">{movie.name}</p>
@@ -62,7 +66,8 @@ export default function Rows({ title, fetchURL }) {
         ))}
       </div>
       {trailerUrl && <YouTube videoId={trailerUrl} opts={{ height: '390', width: '100%' }} />}
-      {selectedMovieId && <MovieDetails movieId={selectedMovieId} onClose={handleCloseDetails} />}
+      {/* Pass the whole movie object to MovieDetails */}
+      {movies.length > 0 && <MovieDetails movie={movies.find(movie => movie.id === movie)} onClose={handleCloseDetails} />}
     </div>
   );
 }

@@ -10,6 +10,7 @@ import Rows from './Components/Rows';
 import requests, { API_KEY } from './request';
 import Nav from './Components/Nav';
 import MovieDetailsPage from './pages/MovieDetaisPage';
+import Home from './Components/Home';
 
 function App() {
   const [searchValue, setSearchValue] = useState('')
@@ -61,11 +62,12 @@ function App() {
     <Router>
       <div className='bg-slate-950 bg-blend-darken text-white'>
         <Nav />
+        <Banner />
         <div className='absolute -top-1 right-5'>
           <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
         </div>
         <Routes>
-          <Route path="/" element={<Banner />} />
+          <Route path="/" element={<Home />} />
           <Route path="/movie/:id" element={<MovieDetailsPage />} />
         </Routes>
         <MovieList title="Movies" movies={movies} handleFavouritesClick={addFavouriteMovie} favouriteComponent={AddToFavourites}/>
