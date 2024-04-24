@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useParams } from 'react-router-dom';
 import Banner from './Components/Banner';
 import './index.css';
 import SearchBox from './Components/SearchBox';
@@ -9,7 +9,7 @@ import MovieList from './Components/MovieList';
 import Rows from './Components/Rows';
 import requests, { API_KEY } from './request';
 import Nav from './Components/Nav';
-import MovieDetailsPage from './pages/MovieDetaisPage';
+import MovieDetails from './Components/MovieDetails';
 import Home from './Components/Home';
 
 function App() {
@@ -85,3 +85,9 @@ function App() {
 }
 
 export default App;
+
+// New component to handle MovieDetails
+function MovieDetailsPage() {
+  let { id } = useParams(); // Access movie ID from URL params
+  return <MovieDetails movieId={id} />;
+}

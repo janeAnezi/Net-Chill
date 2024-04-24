@@ -4,7 +4,7 @@ import MovieDetails from '../Components/MovieDetails'
 function MovieDetaisPage() {
   return (
     <div>
-      <MovieDetails />
+      <MovieDetails movieId={movie.id} onClose={handleCloseDetails} />
     </div>
   )
 }
