@@ -28,7 +28,7 @@ const MovieDetails = ({ movieId, onClose }) => {
       <div>
         <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className='w-96' />
       </div>
-      <div className="ml-4 mt-4 text-lg text-gray-400 w-96">
+      <div className="ml-4 mt-4 text-lg text-gray-400">
         <h2 className="text-3xl text-slate-200 font-semibold pt-2 pb-8">{movieDetails.title}</h2>
         <p className=" pb-8">{movieDetails.release_date}</p>
         <p className=" pb-24">{movieDetails.overview}</p>
