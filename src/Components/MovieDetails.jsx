@@ -19,20 +19,20 @@ const MovieDetails = ({ movieId, onClose }) => {
   }, [movieId]);
 
   if (!movieDetails) {
-    return <div className='bg-slate-950'>Loading...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
-    <div className="flex justify-between ml-20 my-20 custom">
+    <div className="flex justify-between pr-12 pl-20 py-20 custom bg-slate-950">
       {/* Display movie poster */}
       <div>
-        <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className=" h-auto" />
+        <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className='w-96' />
       </div>
-      <div className="ml-4">
-        <h2 className="text-xl font-semibold">{movieDetails.title}</h2>
-        <p className="text-gray-700">{movieDetails.release_date}</p>
-        <p className="text-gray-700">{movieDetails.overview}</p>
-        <button onClick={onClose} className="bg-slate-500 text-white py-0.5 px-2 mt-3 rounded-md text-sm">Close</button>
+      <div className="ml-4 mt-4 text-lg text-gray-400 w-96">
+        <h2 className="text-3xl text-slate-200 font-semibold pt-2 pb-8">{movieDetails.title}</h2>
+        <p className=" pb-8">{movieDetails.release_date}</p>
+        <p className=" pb-24">{movieDetails.overview}</p>
+        <button onClick={onClose} className="bg-slate-500 text-white py-0.5 px-2 mt-3 rounded-md text-sm hover:bg-red-600 hover:skew-y-12">Close</button>
       </div>
     </div>
   );
