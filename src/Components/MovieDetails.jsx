@@ -23,10 +23,11 @@ const MovieDetails = ({ movieId, onClose }) => {
   }
 
   return (
-    <div className="flex justify-between ml-20 my-20">
+    <div className="flex justify-between ml-20 my-20 sm:flex-col lg:flex-row">
       {/* Display movie poster */}
-      <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className="w-32 h-auto" />
-
+      <div>
+        <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className=" h-auto" />
+      </div>
       <div className="ml-4">
         <h2 className="text-xl font-semibold">{movieDetails.title}</h2>
         <p className="text-gray-700">{movieDetails.release_date}</p>
