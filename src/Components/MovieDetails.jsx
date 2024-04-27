@@ -23,7 +23,7 @@ const MovieDetails = ({ movieId, onClose }) => {
   }
 
   return (
-    <div className="flex justify-between ml-20 my-20 sm:flex-col lg:flex-row">
+    <div className="flex justify-between ml-20 my-20 custom">
       {/* Display movie poster */}
       <div>
         <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className=" h-auto" />
