@@ -19,23 +19,19 @@ const MovieDetails = ({ movieId, onClose }) => {
   }, [movieId]);
 
   if (!movieDetails) {
-    return <div>Loading...</div>;
+    return <div className='bg-slate-950'>Loading...</div>;
   }
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between ml-20 my-20">
       {/* Display movie poster */}
-      <img src={`https://image.tmdb.org/t/p/discover/${movieDetails.poster_path}`} alt={movieDetails.title} className="w-32 h-auto" />
+      <img src={`https://image.tmdb.org/t/p/original/${movieDetails.poster_path}`} alt={movieDetails.title} className="w-32 h-auto" />
 
       <div className="ml-4">
-        {/* Display movie title */}
         <h2 className="text-xl font-semibold">{movieDetails.title}</h2>
-        {/* Display movie overview */}
+        <p className="text-gray-700">{movieDetails.release_date}</p>
         <p className="text-gray-700">{movieDetails.overview}</p>
-        {/* You can add more movie details here */}
-        
-        {/* Close button */}
-        <button onClick={onClose} className="bg-red-500 text-white py-2 px-4 mt-2 rounded-md">Close</button>
+        <button onClick={onClose} className="bg-slate-500 text-white py-0.5 px-2 mt-3 rounded-md text-sm">Close</button>
       </div>
     </div>
   );
